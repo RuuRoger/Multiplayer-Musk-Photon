@@ -8,6 +8,7 @@ namespace Assets.Scripts.Player
     public class CustomPlayerController : MonoBehaviour
     {
 #region Members        
+        [SerializeField] private float m_rotationSpeed = 1f;
         private InputSystem_Actions m_inputSystemAction;
         private Vector2 m_moveInput = new Vector2(0f, 0f);
         private float m_speed = 5f;
