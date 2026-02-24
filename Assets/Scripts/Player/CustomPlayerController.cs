@@ -49,7 +49,19 @@ namespace Assets.Scripts.Player
 
         private void Move()
         {
-            var direction = new Vector3(m_moveInput.x, 0f, m_moveInput.y);
+            var camForward = UnityEngine.Camera.main.transform.forward;
+            var camRight = UnityEngine.Camera.main.transform.right;
+            camForward.y = 0f;
+            camRight.y = 0f;
+            camForward.Normalize();
+            camRight.Normalize();
+
+            var direction = camForward * m_moveInput.y + camRight * m_moveInput.x;
+            if (direction != Vector3.zero)
+            {
+                var targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_rotationSpeed * Time.deltaTime);
+            }
             m_characterController.Move(direction * m_speed * Time.deltaTime);
         }
 #endregion
