@@ -7,13 +7,16 @@ namespace Assets.Scripts.Player
 
     public class CustomPlayerController : MonoBehaviour
     {
-        // ================================================== MEMBERS ==================================================
+#region Members        
+        [SerializeField] private Transform m_cameraPivot;
         private InputSystem_Actions m_inputSystemAction;
         private Vector2 m_moveInput = new Vector2(0f, 0f);
+        private Vector2 m_lookInput = new Vector2(0f, 0f);
         private float m_speed = 5f;
         private CharacterController m_characterController;
+#endregion
 
-        // ================================================== UNITY LIFECYCLES METHOD ==================================================
+#region Unity LifeCycle Methods
         private void Awake()
         {
             m_inputSystemAction = new InputSystem_Actions();
@@ -24,9 +27,11 @@ namespace Assets.Scripts.Player
         {
             ReadInput();
             Move();
+            RotationCamera();
         }
+#endregion        
 
-        // ================================================== EVENTS ==================================================
+#region Events
         private void OnEnable()
         {
             m_inputSystemAction.Player.Enable();
@@ -36,11 +41,13 @@ namespace Assets.Scripts.Player
         {
             m_inputSystemAction.Player.Disable();
         }
+#endregion
 
-        // ================================================== HORIZONTAL ==================================================
+# region Horizontal
         private void ReadInput()
         {
             m_moveInput = m_inputSystemAction.Player.Move.ReadValue<Vector2>();
+            m_lookInput = m_inputSystemAction.Player.Look.ReadValue<Vector2>();
         }
 
         private void Move()
@@ -48,5 +55,13 @@ namespace Assets.Scripts.Player
             var direction = new Vector3(m_moveInput.x, 0f, m_moveInput.y);
             m_characterController.Move(direction * m_speed * Time.deltaTime);
         }
+#endregion
+
+#region  Rotation
+        private void RotationCamera()
+        {
+            
+        }
+#endregion
     }
 }
