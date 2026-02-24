@@ -32,12 +32,12 @@ namespace Assets.Scripts.Player
 #region Events
         private void OnEnable()
         {
-            m_inputSystemAction.Player.Enable();
+            m_inputSystemAction.Player.Move.Enable();
         }
 
         private void OnDisable()
         {
-            m_inputSystemAction.Player.Disable();
+            m_inputSystemAction.Player.Move.Disable();
         }
 #endregion
 
