@@ -6,6 +6,9 @@ namespace Assets.Scripts.Test
     public class TestCameraRotationController : MonoBehaviour
     {
         [SerializeField] private float m_sensitivity = 0f;
+        [SerializeField] private float m_minValueCamera;
+        [SerializeField] private float m_maxValueCamera;
+
         private InputSystem_Actions m_inputSystemAction;
         private Vector2 m_lookInput;
         private float m_yaw = 0f;
