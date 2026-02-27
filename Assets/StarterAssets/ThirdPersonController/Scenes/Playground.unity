@@ -858,6 +858,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Test.TestCameraRotationController
   m_sensitivity: 0.1
+  m_minValueCamera: -40
+  m_maxValueCamera: 70
 --- !u!1001 &1402827283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1154,6 +1156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Test.TestCustomPlayerCOntroller
   m_speed: 5
+  m_rotationSpeed: 1
 --- !u!1001 &1979352518
 PrefabInstance:
   m_ObjectHideFlags: 0
