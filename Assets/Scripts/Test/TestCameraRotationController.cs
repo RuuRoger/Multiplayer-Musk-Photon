@@ -44,7 +44,7 @@ namespace Assets.Scripts.Test
         {
             m_yaw += m_lookInput.x * m_sensitivity;
             m_pitch -= m_lookInput.y * m_sensitivity;
-            m_pitch = Mathf.Clamp(m_pitch, -0.4f, 0.4f);
+            m_pitch = Mathf.Clamp(m_pitch, m_minValueCamera, m_maxValueCamera);
             transform.rotation = Quaternion.Euler(m_pitch, m_yaw, 0f);
         }
     }
