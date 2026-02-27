@@ -6,12 +6,14 @@ namespace Assets.Scripts.Test
     [RequireComponent(typeof(CharacterController))]
     public class TestCustomPlayerCOntroller : MonoBehaviour
     {
+        // ================================================== MEMBERS ==================================================
         [SerializeField]
         private float m_speed = 5f;
         private InputSystem_Actions m_inputSystemAction;
         private CharacterController m_characterController;
         private Vector2 m_inputMove = new Vector2(0f, 0f);
 
+        // ================================================== UNITY LIFECYCLE METHODS ==================================================
         private void Awake()
         {
             m_inputSystemAction = new InputSystem_Actions();
@@ -34,6 +36,7 @@ namespace Assets.Scripts.Test
             Move();           
         }
 
+        // ================================================== MOVEMENT ==================================================
         private void ReadInput()
         {
             m_inputMove = m_inputSystemAction.Player.Move.ReadValue<Vector2>();
@@ -41,7 +44,7 @@ namespace Assets.Scripts.Test
 
         private void Move()
         {
-            var direction = new Vector3(m_inputMove.x, 0f, m_inputMove.y);
+            Vector3 direction = new Vector3(m_inputMove.x, 0f, m_inputMove.y);
             m_characterController.Move(m_speed * Time.deltaTime * direction);
         }
     }
