@@ -7,7 +7,7 @@ namespace Assets.Scripts.Player
 
     public class CustomPlayerController : MonoBehaviour
     {
-#region Members        
+#region MEMBERS        
         [SerializeField] private float m_rotationSpeed = 1f;
         private InputSystem_Actions m_inputSystemAction;
         private Vector2 m_moveInput = new Vector2(0f, 0f);
@@ -15,7 +15,7 @@ namespace Assets.Scripts.Player
         private CharacterController m_characterController;
 #endregion
 
-#region Unity LifeCycle Methods
+#region UNITY LIFECYCLE METHODS
         private void Awake()
         {
             m_inputSystemAction = new InputSystem_Actions();
@@ -29,7 +29,7 @@ namespace Assets.Scripts.Player
         }
 #endregion        
 
-#region Events
+#region EVENTS
         private void OnEnable()
         {
             m_inputSystemAction.Player.Move.Enable();
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Player
         }
 #endregion
 
-# region Horizontal
+# region HORIZONTAL MOVEMENT
         private void ReadInput()
         {
             m_moveInput = m_inputSystemAction.Player.Move.ReadValue<Vector2>();
