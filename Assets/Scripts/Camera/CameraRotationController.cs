@@ -51,7 +51,23 @@ namespace Assets.Scripts.Camera
             m_yaw += m_lookInput.x * m_sensitivity;
             m_pitch -= m_lookInput.y * m_sensitivity;
             m_pitch = Mathf.Clamp(m_pitch, -40f, 40f);
-            transform.rotation = Quaternion.Euler(m_pitch, m_yaw, 0f);          
+
+            if (transform.parent != null)
+            {
+                transform.parent.rotation = Quaternion.Euler(0f, m_yaw, 0f);
+            }
+
+            transform.localRotation = Quaternion.Euler(m_pitch, 0f, 0f);
+        }
+
+        private static float NormalizeAngle(float angle)
+        {
+            if (angle > 180f)
+            {
+                angle -= 360f;
+            }
+
+            return angle;
         }
 #endregion
     }
