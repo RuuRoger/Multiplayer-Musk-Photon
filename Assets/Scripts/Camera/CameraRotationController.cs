@@ -10,14 +10,16 @@ namespace Assets.Scripts.Camera
         private Vector2 m_lookInput = new Vector2(0f, 0f);
         private float m_yaw = 0f;
         private float m_pitch = 0f;
-        #endregion
+#endregion
 
 #region UNITY LIFECYCLE METHODS
         private void Awake()
         {
-            m_inputSystemAction = new InputSystem_Actions();       
+            m_inputSystemAction = new InputSystem_Actions();
+            m_yaw = transform.parent != null ? transform.parent.eulerAngles.y : transform.eulerAngles.y;
+            m_pitch = NormalizeAngle(transform.localEulerAngles.x);
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;     
+            Cursor.visible = false;
         }
 
         private void LateUpdate()
@@ -49,7 +51,23 @@ namespace Assets.Scripts.Camera
             m_yaw += m_lookInput.x * m_sensitivity;
             m_pitch -= m_lookInput.y * m_sensitivity;
             m_pitch = Mathf.Clamp(m_pitch, -40f, 40f);
-            transform.rotation = Quaternion.Euler(m_pitch, m_yaw, 0f);          
+
+            if (transform.parent != null)
+            {
+                transform.parent.rotation = Quaternion.Euler(0f, m_yaw, 0f);
+            }
+
+            transform.localRotation = Quaternion.Euler(m_pitch, 0f, 0f);
+        }
+
+        private static float NormalizeAngle(float angle)
+        {
+            if (angle > 180f)
+            {
+                angle -= 360f;
+            }
+
+            return angle;
         }
 #endregion
     }
