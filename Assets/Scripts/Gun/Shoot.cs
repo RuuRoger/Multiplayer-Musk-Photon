@@ -51,8 +51,15 @@ namespace Assets.Scripts.Gun
                 if (rigidbodyBullet != null)
                 {
                     rigidbodyBullet.linearVelocity = shootDirection * _shootForce;
-                    _bulletNumber --;
+                    BulletNumber --;
+
+                    if (BulletNumber <= 0)
+                    {
+                        ShowAmmunation();
+                    }
                 }
+
+                Debug.Log($"Balas: {BulletNumber}");
             }   
         }
 
