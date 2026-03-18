@@ -9,7 +9,7 @@ namespace Assets.Scripts.Gun
             Destroy(this.gameObject, 4f);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider _)
         {
             Destroy(this.gameObject);
         }
