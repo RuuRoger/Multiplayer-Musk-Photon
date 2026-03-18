@@ -1,4 +1,5 @@
 using UnityEngine;
+using Assets.Scripts.Ammo;
 
 namespace Assets.Scripts.Gun
 {
@@ -7,8 +8,11 @@ namespace Assets.Scripts.Gun
         [SerializeField] private GameObject _bullet;
         [SerializeField] private Transform _firePoint;
         [SerializeField] private float _shootForce = 5f;
+        [SerializeField] GetAmmo _getAmoObject;
         private InputSystem_Actions _inputSystemActions;
-        private int _bulletNumber = 6;
+
+        // Properties
+        public int BulletNumber {get; private set; } = 6;
 
         private void Awake()
         {
