@@ -47,6 +47,7 @@ namespace Assets.Scripts.Gun
                 if (rigidbodyBullet != null)
                 {
                     rigidbodyBullet.linearVelocity = shootDirection * _shootForce;
+                    _bulletNumber --;
                 }
             }   
         }
