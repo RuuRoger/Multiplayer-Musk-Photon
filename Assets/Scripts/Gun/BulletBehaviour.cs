@@ -6,7 +6,7 @@ namespace Assets.Scripts.Gun
     {
         private void Start()
         {
-            Destroy(this.gameObject, 7f);
+            Destroy(this.gameObject, 4f);
         }
 
         private void OnTriggerEnter(Collider other)
