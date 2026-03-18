@@ -34,6 +34,11 @@ namespace Assets.Scripts.Gun
         {
             if (_inputSystemActions.Player.Shoot.WasPressedThisFrame())
             {
+                if (_bulletNumber <= 0)
+                {
+                    return;
+                }
+
                 Vector3 shootDirection = GetShootDirection();
                 Quaternion shootRotation = Quaternion.LookRotation(shootDirection);
                 GameObject bulletInstance = Instantiate(_bullet, _firePoint.position, shootRotation);
