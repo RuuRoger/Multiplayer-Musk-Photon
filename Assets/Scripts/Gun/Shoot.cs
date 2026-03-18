@@ -21,7 +21,7 @@ namespace Assets.Scripts.Gun
 
         private void OnEnable()
         {
-            _inputSystemActions.Player.Shoot.Enable(); 
+            _inputSystemActions.Player.Shoot.Enable();
         }
 
         private void OnDisable()
@@ -38,7 +38,7 @@ namespace Assets.Scripts.Gun
         {
             if (_inputSystemActions.Player.Shoot.WasPressedThisFrame())
             {
-                if (_bulletNumber <= 0)
+                if (BulletNumber <= 0)
                 {
                     return;
                 }
