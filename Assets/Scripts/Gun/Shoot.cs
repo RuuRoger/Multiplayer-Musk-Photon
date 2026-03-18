@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Gun
 {
-    public class Gun : MonoBehaviour
+    public class Shoot : MonoBehaviour
     {
         [SerializeField] private GameObject _bullet;
         [SerializeField] private Transform _firePoint;
