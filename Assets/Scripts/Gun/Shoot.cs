@@ -8,6 +8,7 @@ namespace Assets.Scripts.Gun
         [SerializeField] private Transform _firePoint;
         [SerializeField] private float _shootForce = 5f;
         private InputSystem_Actions _inputSystemActions;
+        private int _bulletNumber = 6;
 
         private void Awake()
         {
