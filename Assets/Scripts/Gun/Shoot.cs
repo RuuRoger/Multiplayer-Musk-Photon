@@ -73,5 +73,15 @@ namespace Assets.Scripts.Gun
             return _firePoint.forward.normalized;
         }
 
+        public void SetBulleetNumber()
+        {
+            BulletNumber = 6;
+        }
+
+        private void ShowAmmunation()
+        {
+            _getAmoObject.gameObject.SetActive(true);
+        }
+
     }
 }
