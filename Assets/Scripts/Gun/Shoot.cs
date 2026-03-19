@@ -1,11 +1,15 @@
 using UnityEngine;
 using Assets.Scripts.Ammo;
+using Assets.Scripts.Data.Gun;
 
 namespace Assets.Scripts.Gun
 {
     public class Shoot : MonoBehaviour
     {
-        [SerializeField] private GameObject _bullet;
+        /* ================================================================================================================
+        ---------------------------------------------------- MEMBERS -----------------------------------------------------
+        ================================================================================================================= */
+        [SerializeField] private GunSettings _settings; 
         [SerializeField] private Transform _firePoint;
         [SerializeField] private float _shootForce = 5f;
         [SerializeField] GetAmmo _getAmoObject;
