@@ -1,15 +1,27 @@
 using UnityEngine;
+using Assets.Scripts.Ammo;
+using Assets.Scripts.Data.Gun;
 
 namespace Assets.Scripts.Gun
 {
-    public class Gun : MonoBehaviour
+    public class Shoot : MonoBehaviour
     {
-        [SerializeField] private GameObject _bullet;
+        /* ================================================================================================================
+        ---------------------------------------------------- MEMBERS -----------------------------------------------------
+        ================================================================================================================= */
+        [SerializeField] private GunSettings _settings; 
         [SerializeField] private Transform _firePoint;
-        [SerializeField] private float _shootForce = 5f;
+        [SerializeField] GetAmmo _getAmoObject;
         private InputSystem_Actions _inputSystemActions;
-        private int _bulletNumber = 6;
 
+        /* ================================================================================================================
+        ---------------------------------------------------- PROPERTIES -----------------------------------------------------
+        ================================================================================================================= */
+        public int BulletNumber {get; private set; } = 6;
+
+        /* ================================================================================================================
+        ---------------------------------------------------- UNITY LIFE CYCLE METHODS -----------------------------------------------------
+        ================================================================================================================= */
         private void Awake()
         {
             _inputSystemActions = new InputSystem_Actions();
@@ -17,7 +29,7 @@ namespace Assets.Scripts.Gun
 
         private void OnEnable()
         {
-            _inputSystemActions.Player.Shoot.Enable(); 
+            _inputSystemActions.Player.Shoot.Enable();
         }
 
         private void OnDisable()
@@ -30,25 +42,35 @@ namespace Assets.Scripts.Gun
             ToShoot();
         }
 
+        /* ================================================================================================================
+        ---------------------------------------------------- SHOOT HANDLE -----------------------------------------------------
+        ================================================================================================================= */
         private void ToShoot()
         {
             if (_inputSystemActions.Player.Shoot.WasPressedThisFrame())
             {
-                if (_bulletNumber <= 0)
+                if (BulletNumber <= 0)
                 {
                     return;
                 }
 
                 Vector3 shootDirection = GetShootDirection();
                 Quaternion shootRotation = Quaternion.LookRotation(shootDirection);
-                GameObject bulletInstance = Instantiate(_bullet, _firePoint.position, shootRotation);
+                GameObject bulletInstance = Instantiate(_settings.Bullet, _firePoint.position, shootRotation);
                 var rigidbodyBullet = bulletInstance.GetComponent<Rigidbody>();
 
                 if (rigidbodyBullet != null)
                 {
-                    rigidbodyBullet.linearVelocity = shootDirection * _shootForce;
-                    _bulletNumber --;
+                    rigidbodyBullet.linearVelocity = shootDirection * _settings.ShootForce;
+                    BulletNumber --;
+
+                    if (BulletNumber <= 0)
+                    {
+                        ShowAmmunation();
+                    }
                 }
+
+                Debug.Log($"Balas: {BulletNumber}");
             }   
         }
 
@@ -60,6 +82,16 @@ namespace Assets.Scripts.Gun
             }
 
             return _firePoint.forward.normalized;
+        }
+
+        public void SetBulleetNumber()
+        {
+            BulletNumber = 6;
+        }
+
+        private void ShowAmmunation()
+        {
+            _getAmoObject.gameObject.SetActive(true);
         }
 
     }
