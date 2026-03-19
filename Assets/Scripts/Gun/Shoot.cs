@@ -49,12 +49,12 @@ namespace Assets.Scripts.Gun
 
                 Vector3 shootDirection = GetShootDirection();
                 Quaternion shootRotation = Quaternion.LookRotation(shootDirection);
-                GameObject bulletInstance = Instantiate(_bullet, _firePoint.position, shootRotation);
+                GameObject bulletInstance = Instantiate(_settings.Bullet, _firePoint.position, shootRotation);
                 var rigidbodyBullet = bulletInstance.GetComponent<Rigidbody>();
 
                 if (rigidbodyBullet != null)
                 {
-                    rigidbodyBullet.linearVelocity = shootDirection * _shootForce;
+                    rigidbodyBullet.linearVelocity = shootDirection * _settings.ShootForce;
                     BulletNumber --;
 
                     if (BulletNumber <= 0)
