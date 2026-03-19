@@ -11,7 +11,6 @@ namespace Assets.Scripts.Gun
         ================================================================================================================= */
         [SerializeField] private GunSettings _settings; 
         [SerializeField] private Transform _firePoint;
-        [SerializeField] private float _shootForce = 5f;
         [SerializeField] GetAmmo _getAmoObject;
         private InputSystem_Actions _inputSystemActions;
 
