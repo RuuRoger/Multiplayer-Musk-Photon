@@ -24,15 +24,6 @@ namespace Assets.Scripts.Camera
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
-        private void LateUpdate()
-        {
-            ReadInput();
-            RotationCamera();
-        }
-#endregion
-
-#region EVENTS
         private void OnEnable()
         {
             m_inputSystemAction.Player.Look.Enable();
@@ -42,9 +33,16 @@ namespace Assets.Scripts.Camera
         {
             m_inputSystemAction.Player.Look.Disable();
         }
-#endregion
 
-#region ROTATION
+        private void LateUpdate()
+        {
+            ReadInput();
+            RotationCamera();
+        }
+
+        /* ================================================================================================================
+        ---------------------------------------------------- READ CONTROLS -----------------------------------------------------
+        ================================================================================================================= */
         private void ReadInput()
         {
             m_lookInput = m_inputSystemAction.Player.Look.ReadValue<Vector2>();
