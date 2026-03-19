@@ -128,11 +128,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 252041793}
+  - component: {fileID: 252041794}
   - component: {fileID: 252041792}
   - component: {fileID: 252041791}
   - component: {fileID: 252041790}
   - component: {fileID: 252041795}
-  - component: {fileID: 252041794}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626da2827d24da44eb1dab162a667421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Player.CustomPlayerController
-  m_rotationSpeed: 1
+  _settings: {fileID: 11400000, guid: 48d9f68aa5ef6874e9bc453234c95c1f, type: 2}
 --- !u!143 &252041795
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1137,10 +1137,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1916015688}
+  - component: {fileID: 1916015692}
   - component: {fileID: 1916015691}
   - component: {fileID: 1916015690}
   - component: {fileID: 1916015689}
-  - component: {fileID: 1916015692}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -1255,9 +1255,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5869341259e3c498b1a636dde4752e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Gun.Gun
-  _bullet: {fileID: 5868335578065890937, guid: e86b51be49851e743a32b0c14acb16f1, type: 3}
+  _settings: {fileID: 11400000, guid: 777aafe32ae907345a14b18bd2ff8283, type: 2}
   _firePoint: {fileID: 1896750015}
-  _shootForce: 100
+  _bulletPrefab: {fileID: 5868335578065890937, guid: e86b51be49851e743a32b0c14acb16f1, type: 3}
   _getAmoObject: {fileID: 405597430}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
