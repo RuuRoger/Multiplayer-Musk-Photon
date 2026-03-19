@@ -11,6 +11,7 @@ namespace Assets.Scripts.Gun
         ================================================================================================================= */
         [SerializeField] private GunSettings _settings; 
         [SerializeField] private Transform _firePoint;
+        [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] GetAmmo _getAmoObject;
         private InputSystem_Actions _inputSystemActions;
 
@@ -56,7 +57,7 @@ namespace Assets.Scripts.Gun
 
                 Vector3 shootDirection = GetShootDirection();
                 Quaternion shootRotation = Quaternion.LookRotation(shootDirection);
-                GameObject bulletInstance = Instantiate(_settings.Bullet, _firePoint.position, shootRotation);
+                GameObject bulletInstance = Instantiate(_bulletPrefab, _firePoint.position, shootRotation);
                 var rigidbodyBullet = bulletInstance.GetComponent<Rigidbody>();
 
                 if (rigidbodyBullet != null)
