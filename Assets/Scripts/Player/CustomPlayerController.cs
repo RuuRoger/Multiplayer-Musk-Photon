@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Assets.Scripts.Data.Player;
 
 namespace Assets.Scripts.Player
 {
@@ -7,13 +7,13 @@ namespace Assets.Scripts.Player
 
     public class CustomPlayerController : MonoBehaviour
     {
-#region MEMBERS        
-        [SerializeField] private float m_rotationSpeed = 1f;
+        /* ================================================================================================================
+        ---------------------------------------------------- MEMBERS -----------------------------------------------------
+        ================================================================================================================= */
+        [SerializeField] private CustomPlayerControllerSettings _settings;
         private InputSystem_Actions m_inputSystemAction;
-        private Vector2 m_moveInput = new Vector2(0f, 0f);
-        private float m_speed = 5f;
         private CharacterController m_characterController;
-#endregion
+        private Vector2 m_moveInput = new Vector2(0f, 0f);
 
         /* ================================================================================================================
         ---------------------------------------------------- UNITY LIFECYCLE METHODS -----------------------------------------------------
@@ -24,14 +24,6 @@ namespace Assets.Scripts.Player
             m_characterController = GetComponent<CharacterController>();
         }
 
-        private void Update()
-        {
-            ReadInput();
-            Move();
-        }
-#endregion        
-
-#region EVENTS
         private void OnEnable()
         {
             m_inputSystemAction.Player.Move.Enable();
@@ -71,8 +63,7 @@ namespace Assets.Scripts.Player
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _settings.RotationSpeed * Time.deltaTime);
             }
-            m_characterController.Move(direction * m_speed * Time.deltaTime);
+            m_characterController.Move(direction * _settings.MovementSpeed * Time.deltaTime);
         }
-#endregion
     }
 }
