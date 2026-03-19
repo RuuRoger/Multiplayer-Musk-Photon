@@ -15,7 +15,9 @@ namespace Assets.Scripts.Player
         private CharacterController m_characterController;
 #endregion
 
-#region UNITY LIFECYCLE METHODS
+        /* ================================================================================================================
+        ---------------------------------------------------- UNITY LIFECYCLE METHODS -----------------------------------------------------
+        ================================================================================================================= */
         private void Awake()
         {
             m_inputSystemAction = new InputSystem_Actions();
@@ -39,9 +41,16 @@ namespace Assets.Scripts.Player
         {
             m_inputSystemAction.Player.Move.Disable();
         }
-#endregion
 
-# region HORIZONTAL MOVEMENT
+        private void Update()
+        {
+            ReadInput();
+            Move();
+        }
+
+        /* ================================================================================================================
+        ---------------------------------------------------- HORIZONTAL MOVEMENT -----------------------------------------------------
+        ================================================================================================================= */
         private void ReadInput()
         {
             m_moveInput = m_inputSystemAction.Player.Move.ReadValue<Vector2>();
