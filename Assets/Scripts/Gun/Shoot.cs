@@ -25,6 +25,7 @@ namespace Assets.Scripts.Gun
         ---------------------------------------------------- EVENTS -----------------------------------------------------
         ================================================================================================================= */
         public event Action OnShowAmmo;
+        public event Action<int> OnBulletNumber;
 
         /* ================================================================================================================
         ---------------------------------------------------- UNITY LIFE CYCLE METHODS -----------------------------------------------------
@@ -70,6 +71,7 @@ namespace Assets.Scripts.Gun
                 {
                     rigidbodyBullet.linearVelocity = shootDirection * _settings.ShootForce;
                     BulletNumber --;
+                    OnBulletNumber?.Invoke(BulletNumber);
 
                     if (BulletNumber <= 0)
                     {
