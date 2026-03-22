@@ -1,13 +1,12 @@
 using UnityEngine;
 using TMPro;
-using System.Runtime.CompilerServices;
 using System.Collections;
 
 namespace Assets.Scripts.Managers
 {
     public class Timer : MonoBehaviour
     {
-        [SerializeField] public TMP_Text _time;
+        [SerializeField] private TMP_Text _time;
 
         private void Start()
         {
