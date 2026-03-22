@@ -11,7 +11,7 @@ namespace Assets.Scripts.Gun
 
         private void OnTriggerEnter(Collider _)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject, 0.5f);
         }
     }
 }
