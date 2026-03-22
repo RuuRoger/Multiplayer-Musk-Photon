@@ -1,6 +1,7 @@
 using UnityEngine;
 using Assets.Scripts.Ammo;
 using Assets.Scripts.Data.Gun;
+using System;
 
 namespace Assets.Scripts.Gun
 {
@@ -19,6 +20,11 @@ namespace Assets.Scripts.Gun
         ---------------------------------------------------- PROPERTIES -----------------------------------------------------
         ================================================================================================================= */
         public int BulletNumber {get; private set; } = 6;
+
+        /* ================================================================================================================
+        ---------------------------------------------------- EVENTS -----------------------------------------------------
+        ================================================================================================================= */
+        public event Action OnShowAmmo;
 
         /* ================================================================================================================
         ---------------------------------------------------- UNITY LIFE CYCLE METHODS -----------------------------------------------------
@@ -67,7 +73,7 @@ namespace Assets.Scripts.Gun
 
                     if (BulletNumber <= 0)
                     {
-                        ShowAmmunation();
+                        OnShowAmmo?.Invoke();
                     }
                 }
 
@@ -89,11 +95,5 @@ namespace Assets.Scripts.Gun
         {
             BulletNumber = 6;
         }
-
-        private void ShowAmmunation()
-        {
-            _getAmoObject.gameObject.SetActive(true);
-        }
-
     }
 }
