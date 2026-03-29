@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ammo1
   - BulletBlue
+  - Ammo2
+  - Ammo3
   layers:
   - Default
   - TransparentFX
