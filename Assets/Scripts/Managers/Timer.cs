@@ -26,6 +26,12 @@ namespace Assets.Scripts.Managers
 
         private IEnumerator CountDown()
         {
+            if (_time == null)
+            {
+                Debug.LogError("El componente TMP_Text (_time) no está asignado o no es accesible.");
+                yield break; // Detenemos la corrutina si _time es null
+            }
+
             float time = 90f;
             
             while(time >= 0)
