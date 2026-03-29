@@ -13,7 +13,6 @@ namespace Assets.Scripts.Gun
         [SerializeField] private GunSettings _settings; 
         [SerializeField] private Transform _firePoint;
         [SerializeField] private GameObject _bulletPrefab;
-        [SerializeField] GetAmmo _getAmoObject;
         private InputSystem_Actions _inputSystemActions;
 
         /* ================================================================================================================
