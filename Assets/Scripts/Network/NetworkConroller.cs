@@ -16,14 +16,14 @@ namespace Assets.Scripts.Network
         {
             PhotonNetwork.JoinOrCreateRoom(
                 "Adventure",
-                new RoomOptions {MaxPlayers = 2},
+                new RoomOptions {MaxPlayers = 3},
                 null
             );
         }
 
         public override void OnJoinedRoom()
         {
-            // PhotonNetwork.Instantiate();
+            PhotonNetwork.Instantiate("Player", new Vector3(24f, 1f, -24f), Quaternion.identity);
         }
     }
 }
