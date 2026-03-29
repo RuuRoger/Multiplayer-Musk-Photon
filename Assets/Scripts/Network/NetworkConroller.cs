@@ -1,7 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-using Unity.Mathematics;
 
 namespace Assets.Scripts.Network
 {
