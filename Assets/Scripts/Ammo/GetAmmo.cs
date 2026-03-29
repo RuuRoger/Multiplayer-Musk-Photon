@@ -17,7 +17,7 @@ namespace Assets.Scripts.Ammo
         /* ================================================================================================================
         ---------------------------------------------------- EVENTS -----------------------------------------------------
         ================================================================================================================= */
-        public event Action OnDisableAmmo;
+        public event Action<string> OnDisableAmmo;
         public event Action<int> OnRestartBulelts;
         
         /* ================================================================================================================
@@ -50,7 +50,7 @@ namespace Assets.Scripts.Ammo
             if (other.CompareTag("Ammo3") && playerTag == "Player3")
             {
                 _gun.SetBulleetNumber();
-                OnDisableAmmo?.Invoke();
+                OnDisableAmmo?.Invoke(playerTag);
                 OnRestartBulelts?.Invoke(6);
             }
         }
