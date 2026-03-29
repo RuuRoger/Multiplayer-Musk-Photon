@@ -33,7 +33,21 @@ namespace Assets.Scripts.Ammo
         ================================================================================================================= */
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Ammo1"))
+            if (other.CompareTag("Ammo1") && playerTag == "Player")
+            {
+                _gun.SetBulleetNumber();
+                OnDisableAmmo?.Invoke(playerTag);
+                OnRestartBulelts?.Invoke(6);
+            }
+            
+            if (other.CompareTag("Ammo2") && playerTag == "Player2")
+            {
+                _gun.SetBulleetNumber();
+                OnDisableAmmo?.Invoke(playerTag);
+                OnRestartBulelts?.Invoke(6);
+            }
+
+            if (other.CompareTag("Ammo3") && playerTag == "Player3")
             {
                 _gun.SetBulleetNumber();
                 OnDisableAmmo?.Invoke();
