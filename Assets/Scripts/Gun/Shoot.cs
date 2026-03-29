@@ -23,7 +23,7 @@ namespace Assets.Scripts.Gun
         /* ================================================================================================================
         ---------------------------------------------------- EVENTS -----------------------------------------------------
         ================================================================================================================= */
-        public event Action OnShowAmmo;
+        public event Action<string> OnShowAmmo;
         public event Action<int> OnBulletNumber;
 
         /* ================================================================================================================
@@ -74,7 +74,9 @@ namespace Assets.Scripts.Gun
 
                     if (BulletNumber <= 0)
                     {
-                        OnShowAmmo?.Invoke();
+                        string tagPlayer = transform.root.tag;
+                        Debug.Log($"Mi etiqueta es: {tagPlayer}");
+                        OnShowAmmo?.Invoke(tagPlayer);
                     }
                 }
 
