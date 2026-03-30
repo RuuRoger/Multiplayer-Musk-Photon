@@ -1,5 +1,6 @@
 using UnityEngine;
 using Assets.Scripts.Data.Player;
+using Photon.Pun;
 
 namespace Assets.Scripts.Player
 {
@@ -13,7 +14,9 @@ namespace Assets.Scripts.Player
         [SerializeField] private CustomPlayerControllerSettings _settings;
         private InputSystem_Actions m_inputSystemAction;
         private CharacterController m_characterController;
+        private PhotonView _photonView;
         private Vector2 m_moveInput = new Vector2(0f, 0f);
+        private Camera _playerCamera;
 
         /* ================================================================================================================
         ---------------------------------------------------- UNITY LIFECYCLE METHODS -----------------------------------------------------
@@ -22,6 +25,9 @@ namespace Assets.Scripts.Player
         {
             m_inputSystemAction = new InputSystem_Actions();
             m_characterController = GetComponent<CharacterController>();
+            _photonView = GetComponent<PhotonView>();
+            _playerCamera = GetComponentInChildren<Camera>(true);
+            
         }
 
         private void OnEnable()
@@ -36,6 +42,7 @@ namespace Assets.Scripts.Player
 
         private void Update()
         {
+            if (!_photonView.IsMine) return;
             ReadInput();
             Move();
         }
@@ -50,8 +57,10 @@ namespace Assets.Scripts.Player
 
         private void Move()
         {
-            Vector3 camForward = UnityEngine.Camera.main.transform.forward;
-            Vector3 camRight = UnityEngine.Camera.main.transform.right;
+            var cam = _playerCamera != null ? _playerCamera : UnityEngine.Camera.main;
+            if (cam == null) return;
+            Vector3 camForward = cam.transform.forward;
+            Vector3 camRight = cam.transform.right;
             camForward.y = 0f;
             camRight.y = 0f;
             camForward.Normalize();
