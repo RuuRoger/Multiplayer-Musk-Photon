@@ -1,6 +1,7 @@
 using UnityEngine;
+using Photon.Pun;
 
-namespace Assets.Scripts.Camera
+namespace Assets.Scripts.CameraFPS
 {
     public class CameraRotationController : MonoBehaviour
     {
@@ -10,6 +11,8 @@ namespace Assets.Scripts.Camera
         [SerializeField] private float m_sensitivity = 0.1f;
         private InputSystem_Actions m_inputSystemAction;
         private Vector2 m_lookInput = new Vector2(0f, 0f);
+        private PhotonView _phothoView;
+            private PhotonView _photonView;
         private float m_yaw = 0f;
         private float m_pitch = 0f;
 
@@ -23,6 +26,8 @@ namespace Assets.Scripts.Camera
             m_pitch = NormalizeAngle(transform.localEulerAngles.x);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            _phothoView = GetComponent<PhotonView>();
+                _photonView = GetComponentInParent<PhotonView>();
         }
         private void OnEnable()
         {
@@ -34,8 +39,14 @@ namespace Assets.Scripts.Camera
             m_inputSystemAction.Player.Look.Disable();
         }
 
+        private void Update()
+        {
+              if (_photonView != null && !_photonView.IsMine) return;
+        }
+
         private void LateUpdate()
         {
+            if (_photonView != null && !_photonView.IsMine) return;
             ReadInput();
             RotationCamera();
         }
