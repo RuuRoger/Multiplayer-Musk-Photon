@@ -11,7 +11,7 @@ namespace Assets.Scripts.Ammo
         ================================================================================================================= */
         [SerializeField] private Shoot _gun;
         // [SerializeField] private GameObject _ammo;
-        private string playerTag;
+        private int playerActorNumber = -1;
 
 
         /* ================================================================================================================
@@ -25,7 +25,19 @@ namespace Assets.Scripts.Ammo
         ================================================================================================================= */
         private void Start()
         {
-            playerTag = gameObject.tag;
+            // Determine this player's actor number from the nearest PhotonView (if any)
+            var pv = GetComponentInParent<Photon.Pun.PhotonView>();
+            if (pv != null)
+            {
+                if (pv.InstantiationData != null && pv.InstantiationData.Length > 0)
+                {
+                    try { playerActorNumber = (int)pv.InstantiationData[0]; } catch { playerActorNumber = pv.Owner != null ? pv.Owner.ActorNumber : -1; }
+                }
+                else
+                {
+                    playerActorNumber = pv.Owner != null ? pv.Owner.ActorNumber : -1;
+                }
+            }
         }
 
         /* ================================================================================================================
@@ -33,24 +45,24 @@ namespace Assets.Scripts.Ammo
         ================================================================================================================= */
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Ammo1") && playerTag == "Player")
+            if (other.CompareTag("Ammo1") && playerActorNumber == 1)
             {
                 _gun.SetBulleetNumber();
-                OnDisableAmmo?.Invoke(playerTag);
+                OnDisableAmmo?.Invoke("Player");
                 OnRestartBulelts?.Invoke(6);
             }
             
-            if (other.CompareTag("Ammo2") && playerTag == "Player2")
+            if (other.CompareTag("Ammo2") && playerActorNumber == 2)
             {
                 _gun.SetBulleetNumber();
-                OnDisableAmmo?.Invoke(playerTag);
+                OnDisableAmmo?.Invoke("Player2");
                 OnRestartBulelts?.Invoke(6);
             }
 
-            if (other.CompareTag("Ammo3") && playerTag == "Player3")
+            if (other.CompareTag("Ammo3") && playerActorNumber == 3)
             {
                 _gun.SetBulleetNumber();
-                OnDisableAmmo?.Invoke(playerTag);
+                OnDisableAmmo?.Invoke("Player3");
                 OnRestartBulelts?.Invoke(6);
             }
         }
