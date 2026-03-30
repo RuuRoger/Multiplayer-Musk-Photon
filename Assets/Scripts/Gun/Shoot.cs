@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using Assets.Scripts.Ammo;
 using Assets.Scripts.Data.Gun;
-using System;
+using Photon.Pun;
 
 namespace Assets.Scripts.Gun
 {
@@ -63,7 +64,15 @@ namespace Assets.Scripts.Gun
 
                 Vector3 shootDirection = GetShootDirection();
                 Quaternion shootRotation = Quaternion.LookRotation(shootDirection);
-                GameObject bulletInstance = Instantiate(_bulletPrefab, _firePoint.position, shootRotation);
+                int actorNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+                object[] data = new object[] { actorNumber };
+                GameObject bulletInstance = PhotonNetwork.Instantiate(
+                    _bulletPrefab.name,
+                    _firePoint.position,
+                    shootRotation,
+                    0,
+                    data
+                );
                 var rigidbodyBullet = bulletInstance.GetComponent<Rigidbody>();
 
                 if (rigidbodyBullet != null)
