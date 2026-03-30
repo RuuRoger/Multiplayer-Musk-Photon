@@ -8,6 +8,8 @@ TagManager:
   - BulletBlue
   - Ammo2
   - Ammo3
+  - Player2
+  - Player3
   layers:
   - Default
   - TransparentFX
