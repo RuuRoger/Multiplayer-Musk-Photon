@@ -258,6 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 940936042549875404}
   - component: {fileID: 2527891184107361261}
+  - component: {fileID: 2572214986499343497}
   m_Layer: 0
   m_Name: CameraPivot
   m_TagString: Untagged
@@ -295,6 +296,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Camera.CameraRotationController
   m_sensitivity: 0.1
+--- !u!114 &2572214986499343497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948113178802172839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonView
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1359143418511627966
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,6 +332,7 @@ GameObject:
   - component: {fileID: 476489414248259347}
   - component: {fileID: 5430121486620408093}
   - component: {fileID: 7244017919979983314}
+  - component: {fileID: 999999999999999999}
   - component: {fileID: 5038939264317151896}
   - component: {fileID: 7306877115170248058}
   - component: {fileID: 8765287897106004944}
@@ -387,6 +411,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af69199187ea6314aaeb598e34c3834b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Player.PlayerSetup
+  _blue: {fileID: 0}
+  _red: {fileID: 0}
+  _white: {fileID: 0}
 --- !u!114 &7244017919979983314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +432,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 999999999999999999}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -465,6 +493,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &999999999999999999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359143418511627966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!136 &8765287897106004944
 CapsuleCollider:
   m_ObjectHideFlags: 0

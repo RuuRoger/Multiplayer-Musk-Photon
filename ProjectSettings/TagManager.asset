@@ -10,6 +10,8 @@ TagManager:
   - Ammo3
   - Player2
   - Player3
+  - BulletRed
+  - BulletWhite
   layers:
   - Default
   - TransparentFX

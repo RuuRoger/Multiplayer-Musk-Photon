@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1308126969174981300}
   - component: {fileID: 6572014220119116400}
+  - component: {fileID: 5886870099970284919}
   - component: {fileID: 7155445872127635114}
   - component: {fileID: 2308651259980228985}
   - component: {fileID: 6675986568604659177}
@@ -48,6 +49,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb8e8ee5bd4f9f4a8b414662e77e99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Gun.BulletBehaviour
+  _blue: {fileID: 2100000, guid: 781352c3f617af34398946f2a3947519, type: 2}
+  _red: {fileID: 2100000, guid: a0053d8729cc6b24aad23f36e107a21b, type: 2}
+  _white: {fileID: 2100000, guid: 4fa9a7f437651f14da929138c03bd919, type: 2}
+--- !u!114 &5886870099970284919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868335578065890937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonView
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!33 &7155445872127635114
 MeshFilter:
   m_ObjectHideFlags: 0
