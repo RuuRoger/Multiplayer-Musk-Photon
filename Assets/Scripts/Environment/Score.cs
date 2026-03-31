@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 using Photon.Pun;
 using ExitGames.Client.Photon;
 using Photon.Realtime;
-using System;
+using Assets.Scripts.Gun;
 
 namespace Assets.Scripts.Environment
 {
@@ -16,29 +17,27 @@ namespace Assets.Scripts.Environment
         [SerializeField] private Material _white;
         [SerializeField] private string _environmentId;
         private Renderer _renderer;
+        private const byte ENVIRONMENT_COLOR_EVENT = 101;
 
         /* ================================================================================================================
         ---------------------------------------------------- UNITY LIFE CYCLE METHODS -----------------------------------------------------
         ================================================================================================================= */
-        private const byte ENVIRONMENT_COLOR_EVENT = 101;
 
         private void Awake()
         {
             _renderer = GetComponent<Renderer>();
 
-            // Ensure a stable id for this environment object (use inspector value or sanitized name)
             if (string.IsNullOrWhiteSpace(_environmentId))
             {
                 _environmentId = gameObject.name.Replace("(Clone)", string.Empty).Trim();
             }
 
-            // If materials not assigned in inspector, try to load defaults from Bullet prefab
             if (_blue == null || _red == null || _white == null)
             {
-                var mats = Assets.Scripts.Gun.BulletBehaviour.LoadDefaultMaterials();
-                if (_blue == null) _blue = mats[0];
-                if (_red == null) _red = mats[1];
-                if (_white == null) _white = mats[2];
+                var myMaterials = BulletBehaviour.LoadDefaultMaterials();
+                if (_blue == null) _blue = myMaterials[0];
+                if (_red == null) _red = myMaterials[1];
+                if (_white == null) _white = myMaterials[2];
             }
         }
 
@@ -57,29 +56,44 @@ namespace Assets.Scripts.Environment
         ================================================================================================================= */
         private void OnTriggerEnter(Collider other)
         {
-            var pv = other.GetComponentInParent<Photon.Pun.PhotonView>();
+            var photonViewComponent = other.GetComponentInParent<PhotonView>();
             int actorNumber = -1;
 
-            if (pv != null)
+            if (photonViewComponent != null)
             {
-                if (pv.InstantiationData != null && pv.InstantiationData.Length > 0)
+                if (photonViewComponent.InstantiationData != null && photonViewComponent.InstantiationData.Length > 0)
                 {
-                    try { actorNumber = Convert.ToInt32(pv.InstantiationData[0]); } catch { actorNumber = pv.Owner != null ? pv.Owner.ActorNumber : -1; }
+                    try 
+                    { 
+                        actorNumber = Convert.ToInt32(photonViewComponent.InstantiationData[0]); 
+                    } 
+                    catch 
+                    { 
+                        actorNumber = photonViewComponent.Owner != null ? photonViewComponent.Owner.ActorNumber : -1; 
+                    }
                 }
                 else
                 {
-                    actorNumber = pv.Owner != null ? pv.Owner.ActorNumber : -1;
+                    actorNumber = photonViewComponent.Owner != null ? photonViewComponent.Owner.ActorNumber : -1;
                 }
             }
             else
             {
-                // fallback: determine from bullet tag
-                if (other.gameObject.tag == "BulletBlue") actorNumber = 1;
-                else if (other.gameObject.tag == "BulletRed") actorNumber = 2;
-                else if (other.gameObject.tag == "BulletWhite") actorNumber = 3;
+                if (other.gameObject.tag == "BulletBlue")
+                {
+                    actorNumber = 1;
+                } 
+                else if (other.gameObject.tag == "BulletRed")
+                {
+                    actorNumber = 2;
+                } 
+                else if (other.gameObject.tag == "BulletWhite")
+                {
+                    actorNumber = 3;
+                } 
             }
 
-                if (actorNumber != -1)
+            if (actorNumber != -1)
             {
                 // Persist color in room properties so late joiners get the current color
                 if (PhotonNetwork.InRoom && PhotonNetwork.CurrentRoom != null)
@@ -113,13 +127,11 @@ namespace Assets.Scripts.Environment
 
         private void Start()
         {
-            // On start, try to apply any cached color from the room (may be null if not in room yet)
             TryApplyCachedColor();
         }
 
         public override void OnJoinedRoom()
         {
-            // When joining a room, ensure we apply any cached environment color
             TryApplyCachedColor();
         }
 
@@ -145,15 +157,18 @@ namespace Assets.Scripts.Environment
         {
             if (actorNumber == 1)
             {
-                if (_blue != null) _renderer.material = _blue; else _renderer.material.color = Color.blue;
+                if (_blue != null) _renderer.material = _blue; 
+                else _renderer.material.color = Color.blue;
             }
             else if (actorNumber == 2)
             {
-                if (_red != null) _renderer.material = _red; else _renderer.material.color = Color.red;
+                if (_red != null) _renderer.material = _red;
+                else _renderer.material.color = Color.red;
             }
             else if (actorNumber == 3)
             {
-                if (_white != null) _renderer.material = _white; else _renderer.material.color = Color.white;
+                if (_white != null) _renderer.material = _white; 
+                else _renderer.material.color = Color.white;
             }
         }
     }

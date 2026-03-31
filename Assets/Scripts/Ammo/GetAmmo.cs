@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 using Assets.Scripts.Gun;
-using System;
+using Photon.Pun;
 
 namespace Assets.Scripts.Ammo
 {
@@ -10,9 +11,7 @@ namespace Assets.Scripts.Ammo
         ---------------------------------------------------- MEMBERS -----------------------------------------------------
         ================================================================================================================= */
         [SerializeField] private Shoot _gun;
-        // [SerializeField] private GameObject _ammo;
         private int playerActorNumber = -1;
-
 
         /* ================================================================================================================
         ---------------------------------------------------- EVENTS -----------------------------------------------------
@@ -25,17 +24,23 @@ namespace Assets.Scripts.Ammo
         ================================================================================================================= */
         private void Start()
         {
-            // Determine this player's actor number from the nearest PhotonView (if any)
-            var pv = GetComponentInParent<Photon.Pun.PhotonView>();
-            if (pv != null)
+            var photonViewComponent = GetComponentInParent<PhotonView>();
+            if (photonViewComponent != null)
             {
-                if (pv.InstantiationData != null && pv.InstantiationData.Length > 0)
+                if (photonViewComponent.InstantiationData != null && photonViewComponent.InstantiationData.Length > 0)
                 {
-                    try { playerActorNumber = (int)pv.InstantiationData[0]; } catch { playerActorNumber = pv.Owner != null ? pv.Owner.ActorNumber : -1; }
+                    try
+                    { 
+                        playerActorNumber = (int)photonViewComponent.InstantiationData[0]; 
+                    } 
+                    catch 
+                    { 
+                        playerActorNumber = photonViewComponent.Owner != null ? photonViewComponent.Owner.ActorNumber : -1;
+                    }
                 }
                 else
                 {
-                    playerActorNumber = pv.Owner != null ? pv.Owner.ActorNumber : -1;
+                    playerActorNumber = photonViewComponent.Owner != null ? photonViewComponent.Owner.ActorNumber : -1;
                 }
             }
         }

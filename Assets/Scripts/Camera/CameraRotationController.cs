@@ -11,8 +11,7 @@ namespace Assets.Scripts.CameraFPS
         [SerializeField] private float m_sensitivity = 0.1f;
         private InputSystem_Actions m_inputSystemAction;
         private Vector2 m_lookInput = new Vector2(0f, 0f);
-        private PhotonView _phothoView;
-            private PhotonView _photonView;
+        private PhotonView _photonView;
         private float m_yaw = 0f;
         private float m_pitch = 0f;
 
@@ -26,8 +25,7 @@ namespace Assets.Scripts.CameraFPS
             m_pitch = NormalizeAngle(transform.localEulerAngles.x);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            _phothoView = GetComponent<PhotonView>();
-                _photonView = GetComponentInParent<PhotonView>();
+            _photonView = GetComponentInParent<PhotonView>();
         }
         private void OnEnable()
         {
@@ -41,12 +39,19 @@ namespace Assets.Scripts.CameraFPS
 
         private void Update()
         {
-              if (_photonView != null && !_photonView.IsMine) return;
+            if (_photonView != null && !_photonView.IsMine)
+            {
+                return;    
+            } 
         }
 
         private void LateUpdate()
         {
-            if (_photonView != null && !_photonView.IsMine) return;
+            if (_photonView != null && !_photonView.IsMine)
+            {
+                return;
+            }
+
             ReadInput();
             RotationCamera();
         }
@@ -82,7 +87,7 @@ namespace Assets.Scripts.CameraFPS
             {
                 angle -= 360f;
             }
-
+            
             return angle;
         }
     }
