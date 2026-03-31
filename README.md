@@ -22,6 +22,6 @@ Find you ammo to get 6 more bullets and paint it!
 ## How can i win?
 When the time finish, the palyer with more targts, win!
 
-![Game screenshot 3](ReadmeImages/Game 3.png)
+![Game screenshot 3](ReadmeImages/Game3.png)
 ---
 ⚙️ Unity Version: Unity 6.2 (6000.2.10f1)
