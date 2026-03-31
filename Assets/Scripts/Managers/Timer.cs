@@ -189,6 +189,10 @@ namespace Assets.Scripts.Managers
 
                 var shoot = pv.GetComponentInChildren<Assets.Scripts.Gun.Shoot>(true);
                 if (shoot != null) shoot.enabled = false;
+
+                // Disable camera rotation controller if present on the local player
+                var camCtrl = pv.GetComponentInChildren<Assets.Scripts.CameraFPS.CameraRotationController>(true);
+                if (camCtrl != null) camCtrl.enabled = false;
             }
         }
     }
