@@ -12,6 +12,7 @@ TagManager:
   - Player3
   - BulletRed
   - BulletWhite
+  - Score
   layers:
   - Default
   - TransparentFX
