@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Ammo1
   - BulletBlue
+  - Ammo2
+  - Ammo3
+  - Player2
+  - Player3
+  - BulletRed
+  - BulletWhite
+  - Score
   layers:
   - Default
   - TransparentFX
